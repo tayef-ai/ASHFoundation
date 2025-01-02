@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>হ্যালো হসপিটাল</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'hospital/imgs/logo_hello_hospital.png' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'hospital/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'hospital/css/responsive.css' %}">
+</head>
+<body>
+    <!-- nav bar start hear-->
+    <nav class="navbar navbar-expand-lg sticky-top z-1 bg-light-subtle">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'hoshome' %}">
+            <img src="{% static 'hospital/imgs/logo_hello_hospital.png' %}" alt="Logo" style="width: 110px;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            
+          </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'hoshome' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url "habout" %}">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url "hmission" %}">Our Mission</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url "hdoctors" %}">Our Doctors</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url "hfacilities" %}">Facilities</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url "hactivities" %}">Activities</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url "hcontact" %}">Contact Us</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav m-auto">
+              {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{request.user.see_user.name}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'seeprofile' %}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
+                        <li><form class="dropdown-item"  method="POST" action="{% url 'logout' %}">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-sm btn-danger">Logout</button>
+                      </form></li>
+                    </ul>
+                </li>
+            </ul>
+            {% else %}
+            <div class="autButton">
+                <a href="{% url 'login' %}" class="botton_light"> Login</a>
+                <a href="{% url 'register' %}" class="botton_primary"> SingUp</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </nav>  
+    <!-- nav bar end hear -->
+    {% block content %}
+    {% endblock content %}
+    <footer>
+      <div class="container pt-5 pb-5">
+        <div class="row">
+          <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+            <img src="{% static 'hospital/imgs/logo_hello_hospital.png' %}" alt="Logo" style="background-color: white; width: 110px;">
+            <p class="mb-1 mt-2">Copyright © ASH Foundation.</p>
+            <p>All rights reserved</p>
+            <div class="mt-5">
+              <ul class="icon">
+                <li class="">
+                  <a href="https://www.facebook.com/groups/957629478001731/" target="_blank"><img class="" src="{% static 'hospital/imgs/facebook.png' %}" alt="img"></a>
+                </li>
+                <li><a href="#">
+                  <img src="{% static 'hospital/imgs/social_icons_instegram.png' %}" alt="img">
+                </a></li>
+                <li><a href="#">
+                  <img src="{% static 'hospital/imgs/social_Icons_linkding.png' %}" alt="img">
+                </a></li>
+                <li><a href="https://www.youtube.com/@AlhajShamsulHoqueFoundation" target="_blank">
+                  <img src="{% static 'hospital/imgs/social_Icons_youtub.png' %}" alt="img">
+                </a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h3 class="mb-3">Company</h3>
+            <ul class="footer_manu_bar_01">
+              <li class="mb-2"><a href="{% url "habout" %}">About us</a></li>
+              <li class="mb-2"><a href="#">Blog</a></li>
+              <li class="mb-2"><a href="{% url "hcontact" %}">Contact us</a></li>
+              <li class="mb-2"><a href="#">Testimonials</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h3 class="mb-3">Support</h3>
+            <ul class="footer_manu_bar_01">
+              <li class="mb-2"><a href="#">Help center</a></li>
+              <li class="mb-2"><a href="#">Terms of service</a></li>
+              <li class="mb-2"><a href="#">Legal</a></li>
+              <li class="mb-2"><a href="#">Privacy policy</a></li>
+              <li class="mb-2"><a href="#">Status</a></li>
+            </ul>
+          </div>
+          <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+            <h3 class="mb-3">Support</h3>
+            <form>
+              <input type="mail" placeholder="Your email address">
+              <button>
+                  <img class="img-fluid" src="{% static 'hospital/imgs/send_icon.png' %}" alt="send_icon">
+              </button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer section end hear -->
+
+    <script src="{% static 'hospital/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

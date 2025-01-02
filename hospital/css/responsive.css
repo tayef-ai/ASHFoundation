@@ -1,0 +1,78 @@
+@media (max-width: 575.98px) {
+    /* nav bar css stert hear */
+    .navbar .navbar-toggler{
+        box-shadow: none;
+    }
+    .navbar ul li {
+        padding: 6px 25px;
+    }
+
+    /* nav bar css end hear */
+    /* Banner section part start hear */
+    #banner
+    {
+        padding: 40px 0;
+    }
+    #banner h2
+    {               
+        font-size: 35px;
+    }
+    
+    /* Banner section part end hear */ 
+
+    /* Icon box section stert hear */
+    #icon_box_section h2
+    {
+        font-size: 24px;
+    }
+    /* Icon box section end hear */
+    /*Pixelgrade section stert hear */
+    #pixelgrade h2,
+    #footer_like h2
+    {
+        font-size: 30px;
+    }
+    /*Pixelgrade section end hear */
+    /* business review section stert hear */
+    #business_review h2
+    {
+        font-size: 30px;
+    }
+    #business_review img
+    {
+        width: 40px;
+        height: 40px;
+        margin-left: 0px;
+    }
+    #business_review h4
+    {
+        font-size: 24px;
+    }
+    #business_review p
+    {
+        font-size: 14px;
+    }
+    /* business review section end hear */
+    /* marketing Section stert hear */
+    #marketing .img_card
+    {
+        margin-bottom: 140px;
+    }
+    #marketing .img_card .text_body {
+        width: 75%;
+    }
+    /* marketing Section end hear */
+    /* suscipition section stert hear  */
+    #suscipition
+    {
+        margin: -50px 0px 40px;
+    }
+    #suscipition h2
+    {
+        font-size: 40px;
+    }
+    /* suscipition section end hear  */
+}
+@media (min-width: 768px) {
+
+}

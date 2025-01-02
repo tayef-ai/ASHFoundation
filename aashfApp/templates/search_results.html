@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="popular_causes_area py-5">
+    <div class="container mt-5 pt-5">
+        <div class="search-results-header text-center mb-5">
+            <h2 class="mb-3">Search Results for "{{ query }}"</h2>
+            <p class="text-muted">Displaying results across different categories</p>
+        </div>
+
+        {% if results.events or results.projects or results.blogs or results.volunteers or results.campaigns or results.rohingyas or results.legal_documents %}
+            <div class="row">
+                {% if results.events %}
+                    <div class="col-md-6 mb-4">
+                        <div class="result-category card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title">Events</h3>
+                                <ul class="list-unstyled">
+                                    {% for event in results.events %}
+                                        <li class="mb-3">
+                                            <strong>
+                                                <a href="{% url 'event_detail' event.id %}?country={{country}}" class="text-primary">{{ event.e_name }}</a>
+                                            </strong>: 
+                                            <span class="text-muted">{{ event.e_details | truncatewords:20 | safe }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if results.projects %}
+                    <div class="col-md-6 mb-4">
+                        <div class="result-category card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title">Projects</h3>
+                                <ul class="list-unstyled">
+                                    {% for project in results.projects %}
+                                        <li class="mb-3">
+                                            <strong>
+                                                <a href="{% url 'project_detail' project.id %}?country={{country}}" class="text-primary">{{ project.p_name }}</a>
+                                            </strong>: 
+                                            <span class="text-muted">{{ project.p_details | truncatewords:20 | safe }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if results.blogs %}
+                    <div class="col-md-6 mb-4">
+                        <div class="result-category card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title">Blogs</h3>
+                                <ul class="list-unstyled">
+                                    {% for blog in results.blogs %}
+                                        <li class="mb-3">
+                                            <strong>
+                                                <a href="{% url 'blog_detail' blog.id %}?country={{country}}" class="text-primary">{{ blog.b_name }}</a>
+                                            </strong>: 
+                                            <span class="text-muted">{{ blog.b_details | truncatewords:20 | safe }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if results.volunteers %}
+                    <div class="col-md-6 mb-4">
+                        <div class="result-category card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title">Volunteers</h3>
+                                <ul class="list-unstyled">
+                                    {% for volunteer in results.volunteers %}
+                                        <li class="mb-3">
+                                            <strong>{{ volunteer.name }}</strong>: 
+                                            <span class="text-muted">{{ volunteer.role }} - {{ volunteer.address }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if results.campaigns %}
+                    <div class="col-md-6 mb-4">
+                        <div class="result-category card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title">Campaigns</h3>
+                                <ul class="list-unstyled">
+                                    {% for campaign in results.campaigns %}
+                                        <li class="mb-3">
+                                            <strong>
+                                                <a href="{% url 'campaign_detail' campaign.id %}?country={{country}}" class="text-primary">{{ campaign.c_name }}</a>
+                                            </strong>: 
+                                            <span class="text-muted">{{ campaign.c_details | truncatewords:20 | safe }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if results.rohingyas %}
+                    <div class="col-md-6 mb-4">
+                        <div class="result-category card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title">Rohingyas</h3>
+                                <ul class="list-unstyled">
+                                    {% for rohingya in results.rohingyas %}
+                                        <li class="mb-3">
+                                            <strong>
+                                                <a href="{% url 'rohingya_detail' rohingya.id %}?country={{country}}" class="text-primary">{{ rohingya.r_name }}</a>
+                                            </strong>: 
+                                            <span class="text-muted">{{ rohingya.r_details | truncatewords:20 | safe }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if results.legal_documents %}
+                    <div class="col-md-6 mb-4">
+                        <div class="result-category card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title">Legal Documents</h3>
+                                <ul class="list-unstyled">
+                                    {% for legal_document in results.legal_documents %}
+                                        <li class="mb-3">
+                                            <strong>
+                                                <a href="{% url 'legal_document_detail' legal_document.id %}?country={{country}}" class="text-primary">{{ legal_document.l_title }}</a>
+                                            </strong>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p class="font-italic text-muted"><b>No results found.</b></p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .result-category {
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+    .result-category:hover {
+        transform: scale(1.02);
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+        font-size: 1.5rem;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+</style>
+{% endblock content %}

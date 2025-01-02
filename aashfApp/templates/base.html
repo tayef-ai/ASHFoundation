@@ -1,0 +1,473 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ASH Foundation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- <link rel="manifest" href="site.webmanifest"> -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo_ashf[1].png' %}">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- CSS here -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+        <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+        <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+     
+        <style>
+    /* Container for the typing text */
+    #typing-text-container {
+        width: auto;  
+        height: 160px;  
+        overflow: hidden;  /* Hide any overflow */
+        text-align: left;  /* Center the text horizontally */
+    }
+    .image-caption {
+        font-size: 16px;
+        color: #333; /* Adjust color as needed */
+    }
+    /* Typing text style */
+    #typing-text {
+        /* font-size: 24px;  Set the font size */
+        white-space: nowrap;  /* Prevent the text from wrapping */
+    }
+            .myimage {
+                transition: transform 0.25s ease;
+            }
+
+            .myimage:hover {
+                -webkit-transform: scale(2);
+                /* or some other value */
+                transform: scale(2);
+                position: relative;
+                /* Ensure it's positioned */
+                z-index: 2;
+                /* z-index: 20 !important;  */
+            }
+            .error {
+                color: red;  /* Set text color to red for error messages */
+                font-weight: bold;  /* Optional: make the text bold */
+                margin-top: 5px;  /* Optional: add some spacing above the error message */
+            }
+        </style>
+        <style>
+            #map { height: 600px; width: 100%; }
+                /* Map container styling */
+                #map {
+                    width: 100%;
+                    height: 500px;
+                    margin-top: 20px;
+                }
+            
+                /* Style for country labels */
+                .country-label {
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #333;
+                    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+                    padding: 2px 5px;
+                    border-radius: 3px;
+                }
+            
+                /* Responsive adjustments for labels on smaller screens */
+                @media (max-width: 768px) {
+                    #map {
+                        height: 300px;
+                    }
+                    .country-label {
+                        font-size: 12px; /* Smaller font size on smaller screens */
+                        padding: 1px 4px;
+                    }
+                }
+                a.active {
+                    border-bottom: 10px solid #007bff; 
+                    border-top: 7px solid #007bff; 
+                    border-left: 5px solid #007bff; 
+                    border-right: 5px solid #007bff; 
+                    padding: 2px; /* Adjust as needed */
+                }
+            </style>
+    </head>
+
+    <body style="overflow-x: hidden;">
+        <!-- header-start -->
+        <header>
+            <div class="header-area ">
+                <div class="header-top_area">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-7">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-5">
+                                <div class="short_contact_list">
+                                    <ul>
+                                        Connect: <li class="social_media_links"><a href="https://helpnhelper.com/" target='_blank'> <img src="https://helpnhelper.com/web-assets/logo.jpeg" alt="Logo" width="20" height="20">
+                                    helpNhelper</a></li>
+                                    </ul>
+                                </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-7 pt-1">
+                                    <div class="short_contact_list mb-2">
+                                    <ul>
+                                            Visit: <li>
+                                                <a class="p-0 m-0 {% if country == 'Bangladesh' %}active{% endif %}" 
+                                                   href="{% url 'home' 'Bangladesh' %}">
+                                                   <img src="{% static 'img/f7.jpg' %}" alt="Logo" width="60" height="30">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="p-0 m-0 {% if country == 'USA' %}active{% endif %}" 
+                                                   href="{% url 'home' 'USA' %}">
+                                                   <img src="{% static 'img/usa.jpg' %}" alt="Logo" width="60" height="30">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="p-0 m-0 {% if country == 'UK' %}active{% endif %}" 
+                                                   href="{% url 'home' 'UK' %}">
+                                                   <img src="{% static 'img/f3.jpg' %}" alt="Logo" width="60" height="30">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="p-0 m-0 {% if country == 'Egypt' %}active{% endif %}" 
+                                                   href="{% url 'home' 'Egypt' %}">
+                                                   <img src="{% static 'img/egypt.jpeg' %}" alt="Logo" width="60" height="30">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-md-12 col-lg-5">
+                                <div class="social_media_links d-none d-lg-block">
+                                    <a href="#"> <i
+                                        class="fa fa-envelope"></i>info@ashfoundation.ngo</a>
+                                    <a href="https://www.facebook.com/shamsulhoquefoundation">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                    <a href="https://www.youtube.com/@AlhajShamsulHoqueFoundation">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/company/ashfbd/">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                    <!-- <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sticky-header" class="main-header-area py-1">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="mobile_menu d-block d-lg-none"></div>
+        </div>
+        <div class="row align-items-center">
+            <!-- Logo Section -->
+            <div class="col-md-2 pl-3">
+                <div class="logo">
+                    <a href="{% url 'home' country %}">
+                        <img src="{% static 'img/logo_ashf[1].png' %}" height="80" width="80" alt="Logo">
+                    </a>
+                </div>
+            </div>
+            <!-- Navigation Menu -->
+            <div class="col-md-10 px-0 mx-0">
+                <div class="main-menu">
+                    <nav class="d-flex justify-content-between align-items-center">
+                        <ul id="navigation" class="d-flex align-items-center">
+                            <li><a href="{% url 'home' country %}">Home</a></li>
+                            <li><a href="#">About <i class="ti-angle-down"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="{% url 'mission' %}?country={{ country }}">Our Mission</a></li>
+                                    <li><a href="{% url 'legal' %}?country={{ country }}">Legal Documents</a></li>
+                                    <li><a href="{% url 'gb' %}?country={{ country }}">Governing Body</a></li>
+                                    {% if country == 'Bangladesh' %}
+                                    <li><a href="{% url 'ap' %}?country={{ country }}">Shariah Advisory Board</a></li>
+                                    {% endif %}
+                                    <li><a href="{% url 'home' 'Bangladesh' %}">ASH Foundation Bangladesh</a></li>
+                                    <li><a href="{% url 'home' 'USA' %}">ASH Foundation USA</a></li>
+                                    <li><a href="{% url 'home' 'UK' %}">ASH Foundation UK</a></li>
+                                    <li><a href="{% url 'home' 'Egypt' %}">ASH Foundation Egypt</a></li>
+                                    <li><a href="{% url 'award' %}">Awards</a></li>
+                                    <li><a href="{% url 'volunteer' %}?country={{ country }}">Volunteers</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Our Works <i class="ti-angle-down"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="{% url 'project' %}?country={{ country }}">Projects</a></li>
+                                    <li><a href="{% url 'campaign' %}?country={{ country }}">Campaign</a></li>
+                                    <li><a href="{% url 'rohingya' %}?country={{ country }}">FDMNs(Rohingya)</a></li>
+                                    <li><a href="{% url 'blog' %}?country={{ country }}">Blogs</a></li>
+                                    <li><a href="{% url 'gallery' %}?country={{ country }}">Gallery</a></li>
+                                    {% comment %} <li><a href="#">FAQ</a></li> {% endcomment %}
+                                    {% comment %} <li><a href="#">Career</a></li> {% endcomment %}
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'activity' %}?country={{ country }}">New Activities</a></li>
+                            <li><a href="{% url 'event' %}?country={{ country }}">Events</a></li>
+                            <li><a href="{% url 'contact' %}?country={{ country }}">Contact</a></li>
+                            <li>
+                                {% comment %} <a data-scroll-nav="1" href="#" class="btn btn-warning px-2" style="color: black;">Donate</a> {% endcomment %}
+                                <a href="https://shamsulhoquefoundation.org/donate" target='_blank' class="btn btn-warning px-2" style="color: black;">Donate</a>
+                            </li>
+                            <div class="nav-item">
+                                <form class="d-flex ml-auto" role="search" method="GET" action="{% url 'search' %}">
+                                    <div class="input-group">
+                                        <input name="country" type="hidden" value="{{country}}">
+                                        <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
+                                        <button type="submit" class="input-group-text">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            </li>
+                        </ul>
+                        <!-- Search Box -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </header>
+        <!-- header-end -->
+        {% block content %}
+
+        {% endblock content %}
+        <!-- footer_start  -->
+        {% include "donation.html" %}
+        <footer class="footer">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <!-- Logo and Social Links Section -->
+                        <div class="col-xl-2 col-md-4 col-lg-2 mb-4">
+                            <div class="footer_widget text-center">
+                                <div class="footer_logo">
+                                    <a href="#">
+                                        <img src="https://shamsulhoquefoundation.org/assets/images/logoIcon/favicon.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="social_links mt-3">
+                                    <ul class="d-flex justify-content-center list-unstyled">
+                                        <li class="mx-2">
+                                            <a href="https://www.facebook.com/shamsulhoquefoundation"><i class="ti-facebook"></i></a>
+                                        </li>
+                                        <li class="mx-2">
+                                            <a href="https://www.linkedin.com/company/ashfbd/"><i class="fa fa-linkedin"></i></a>
+                                        </li>
+                                        <li class="mx-2">
+                                            <a href="https://www.youtube.com/@AlhajShamsulHoqueFoundation"><i class="fa fa-youtube"></i></a>
+                                            </li>
+                                            <li><a href="https://helpnhelper.com/"> <img src="https://helpnhelper.com/web-assets/logo.jpeg" alt="Logo" width="20" height="20"></a></li>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- About Section -->
+                        <div class="col-xl-8 col-md-12 col-lg-8 mb-4">
+                            <div class="footer_widget text-center text-md-left">
+                                <h3 class="footer_title">{{my_data.service_name}}</h3>
+                                <p class="contacts">
+                                    {{my_data.service_details}}
+                                </p>
+                            </div>
+                        </div>
+        
+                        <!-- Services Section -->
+                        <div class="col-xl-2 col-md-6 col-lg-2 mb-4">
+                            <div class="footer_widget text-center text-md-left">
+                                <h3 class="footer_title">Services</h3>
+                                <ul class="links list-unstyled">
+                                    <li><a href="#">Donate</a></li>
+                                    <li><a href="#">Sponsor</a></li>
+                                    <li><a href="#">Fundraise</a></li>
+                                    <li><a href="#">Volunteer</a></li>
+                                    <li><a href="#">Partner</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Office Locations Section -->
+                    <div class="row justify-content-center gy-4 mt-4">
+                        <!-- Office 1 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                            <h3 style="color: #093471;">Kurigram Office</h3>
+                            <div>Dhorlarpar, Jatrapur</div>
+                            <div>Kurigram, Rangpur, Bangladesh</div>
+                            <div>Email: kurigram@shamsulhoquefoundation.org</div>
+                        </div>
+        
+                        <!-- Office 2 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                            <h3 style="color: #093471;">UK Office</h3>
+                            <div>130 Wilmington Gardens</div>
+                            <div>IG11 9TU, BARKING</div>
+                            <div>London, UK</div>
+                            <div>Tel: 00447466768572</div>
+                            <div>Email: masud@shamsulhoquefoundation.org</div>
+                        </div>
+        
+                        <!-- Office 3 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                            <h3 style="color: #093471;">Cox'sbazar Office</h3>
+                            <div>JN Plaza (3rd floor)</div>
+                            <div>Barmis Market</div>
+                            <div>Main Road, Cox'sbazar</div>
+                            <div>Email: coxsbazar@shamsulhoquefoundation.org</div>
+                        </div>
+        
+                        <!-- Office 4 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                            <h3 style="color: #093471;">Australia Office</h3>
+                            <div>22 Railway Pde Glenfield Sydney NSW</div>
+                            <div>Contact: +61 401 681 951</div>
+                            <div>Email: raghib@shamsulhoquefoundation.org</div>
+                        </div>
+        
+                        <!-- Office 5 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                            <h3 style="color: #093471;">Dhaka Office</h3>
+                            <div>244, New Circular Road</div>
+                            <div>Moucak, Malibag, Dhaka - 1217</div>
+                            <div>Email: dhaka@shamsulhoquefoundation.org</div>
+                        </div>
+        
+                        <!-- Office 6 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                            <h3 style="color: #093471;">USA Office</h3>
+                            <div>8916 175 street APT 2F jamIca NY 11432
+9296848239</div>
+                            <div>Phone: +16468756095</div>
+                            <div>Email: manjur@shamsulhoquefoundation.org</div>
+                        </div>
+        
+                        <!-- Office 7 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                            <h3 style="color: #093471;">Registered Office</h3>
+                            <div>Golam Ali Nazir Para, Chandgaon, Chittagong 4212, Bangladesh</div>
+                            <div>Tel: +8802334470688</div>
+                            <div>Cell: +88 01819 385938</div>
+                            <div>Email: shamsulhoquefoundation@gmail.com info@shamsulhoquefoundation.org</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Copyright Section -->
+            <div class="copy-right_text py-3" style="background-color: #093471;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <p class="copy_right text-center text-white mb-0">
+                                &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | ASH Foundation
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- footer_end  -->
+
+        <!-- link that opens popup -->
+
+        <!-- JS here -->
+        <script>
+            const words = ["Sanitaion", "Water", "Shelter", "Food", "Education", "Health"];  // List of words to display
+            let wordIndex = 0;  // Current word index
+            let charIndex = 0;  // Current character index in the word
+            let isAdding = true;  // Indicates whether we are adding or removing characters
+            const typingSpeed = 150;  // Speed for typing/deleting each character (in milliseconds)
+            const pauseBetweenWords = 1000;  // Pause time after the word is fully typed (in milliseconds)
+        
+            function typeEffect() {
+                const typingElement = document.getElementById("typing-text");
+                const currentWord = words[wordIndex];
+        
+                if (isAdding) {
+                    // Add the next character
+                    typingElement.textContent = currentWord.slice(0, charIndex + 1);
+                    charIndex++;
+        
+                    // If the entire word is typed, pause before removing
+                    if (charIndex === currentWord.length) {
+                        isAdding = false;
+                        setTimeout(typeEffect, pauseBetweenWords);  // Pause before starting to delete
+                        return;
+                    }
+                } else {
+                    // Remove the last character
+                    typingElement.textContent = currentWord.slice(0, charIndex);
+                    charIndex--;
+        
+                    // If all characters are removed, move to the next word
+                    if (charIndex < 0) {
+                        isAdding = true;
+                        wordIndex = (wordIndex + 1) % words.length;  // Move to the next word in the array
+                    }
+                }
+        
+                // Control the speed of typing/deleting characters
+                setTimeout(typeEffect, typingSpeed);
+            }
+        
+            // Start the typing effect when the DOM is fully loaded
+            window.onload = function() {
+                typeEffect();
+            };
+        </script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+        <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+        <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'js/ajax-form.js' %}"></script>
+        <script src="{% static 'js/waypoints.min.js' %}"></script>
+        <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+        <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+        <script src="{% static 'js/scrollIt.js' %}"></script>
+        <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+        <script src="{% static 'js/wow.min.js' %}"></script>
+        <script src="{% static 'js/nice-select.min.js' %}"></script>
+        <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+        <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <script src="{% static 'js/gijgo.min.js' %}"></script>
+        <!--contact js-->
+        <script src="{% static 'js/contact.js' %}"></script>
+        <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+        <script src="{% static 'js/jquery.form.js' %}"></script>
+        <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'js/mail-script.js' %}"></script>
+
+        <script src="{% static 'js/main.js' %}"></script>
+    </body>
+
+</html>

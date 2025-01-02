@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bradcam_area overlay d-flex align-items-center justify-content-center" style="background-image: url({{banner.event_image.url}})">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Contact</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end  -->
+
+<!-- ================ contact section start ================= -->
+<section class="contact-section">
+        <div class="container">
+            <div class="d-none d-sm-block mb-5 pb-4">
+                    {{map | safe}}
+                </div>
+            <div class="row">
+                {% comment %} <div class="col-12">
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div> {% endcomment %}
+                <div class="messages"></div>
+                <div class="col-12">
+                    <h2 class="contact-title">Get in Touch</h2>
+                </div>
+                <div class="col-lg-8">
+                    <form class="form-contact contact_form" method="post" id="contactForm" action="{% url 'contact' %}" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                {% for fm in form %}
+                                <div class="form-group">
+                                    {{ fm.label }}
+                                    <p>{{ fm }}</p>
+                                    {% if fm.errors %}
+                                        <div class="text-danger">
+                                            {{ fm.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                        </div>
+                    </form>
+                                                      
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="media contact-info">
+                        <div id="eventImageCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators (optional, can be removed if not needed) -->
+                            <ol class="carousel-indicators">
+                                {% for q in query %}
+                                    <li data-target="#eventImageCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+                                {% endfor %}
+                            </ol>
+                        
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                {% for q in query %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <img class="d-block w-100 img-fluid" src="{{ q.event_image.url }}" alt="">
+                                    <div class="image-caption text-center mt-2">
+                                        <p>{{ q.caption }}</p> <!-- Display the caption below the image -->
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        
+                            <!-- Controls -->
+                            <a class="carousel-control-prev" href="#eventImageCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#eventImageCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

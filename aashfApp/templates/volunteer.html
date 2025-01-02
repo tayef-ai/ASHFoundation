@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bradcam_area overlay d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>List of Volunteers in {{country}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end  -->
+
+<!-- popular_causes_area_start  -->
+<div class="popular_causes_area pt-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for q in query %}
+            <div class="col-lg-4 col-md-6 my-3">
+                <div class="single_volenteer">
+                    <div class="volenteer_thumb">
+                        <img class="lazyload" data-src="{{q.image.url}}" alt="" loading="lazy">
+                    </div>
+                    <div class="voolenteer_info d-flex align-items-end">
+                        <div class="info_inner">
+                            <h4>{{q.name}}</h4>
+                            <p style="text-align: justify;">{{q.role}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if query.has_previous %}
+                            <!-- Link to the first page -->
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1&country={{ country }}" aria-label="First">
+                                    <span aria-hidden="true">&laquo;&laquo;</span>
+                                </a>
+                            </li>
+                            <!-- Link to the previous page -->
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ query.previous_page_number }}&country={{ country }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+        
+                        <!-- Page numbers -->
+                        {% for i in query.paginator.page_range %}
+                            {% if query.number == i %}
+                                <li class="page-item active">
+                                    <a class="page-link" href="?page={{ i }}&country={{ country }}">{{ i }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ i }}&country={{ country }}">{{ i }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+        
+                        {% if query.has_next %}
+                            <!-- Link to the next page -->
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ query.next_page_number }}&country={{ country }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            <!-- Link to the last page -->
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ query.paginator.num_pages }}&country={{ country }}" aria-label="Last">
+                                    <span aria-hidden="true">&raquo;&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock content %}

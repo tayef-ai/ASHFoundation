@@ -1,0 +1,410 @@
+/* common css style stert hear */
+:root {
+	--neutral-white: #fff;
+	--neutral-silver: #f5f7fa;
+	--neutral-grey-blue: #abbed1;
+	--neutral-l-grey: #89939e;
+	--neutral-grey: #717171;
+	--neutral-d-grey: #4d4d4d;
+	--neutral-black: #263238;
+	--neutral-white-stroke: #abbed1;
+	--brand-info: #2194f3;
+	--brand-secondary: #263238;
+	--brand-primary: #4caf4f;
+	--shade-s1: #43a046;
+	--shade-s2: #388e3b;
+	--shade-s3: #237d31;
+	--shade-s4: #1b5e1f;
+	--shade-s5: #103e13;
+	--tint-t1: #66bb69;
+	--tint-t2: #81c784;
+	--tint-t3: #a5d6a7;
+	--tint-t4: #c8e6c9;
+	--tint-t5: #e8f5e9;
+	--action-success: #2e7d31;
+	--action-error: #e53835;
+	--action-warning: #fbc02d;
+    --font-family: "Inter", sans-serif;
+}
+*
+{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body
+{
+    font-family: "Inter", serif;
+
+}
+h1,h2,h3,h4,h5,h6,p,samp,span
+{
+    margin: 0;
+    padding: 0;
+}
+
+ol,ul
+{
+    list-style: none;
+}
+a
+{
+    text-decoration: none;
+}
+.botton_primary,
+.botton_light
+{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 143%;
+    text-align: center;
+    color: var(--neutral-white);
+    border-radius: 6px;
+    padding: 10px 20px;
+    display: inline-block;
+    background: var(--brand-primary);
+    border: 1px solid var(--brand-primary);
+    transition: 0.5s;
+}
+.botton_light,
+.botton_primary:hover
+{
+    transform: scale(1.25);
+    color: var(--brand-primary);
+    background-color: var(--neutral-white);
+}
+.botton_light:hover
+{
+    background: var(--brand-primary);
+    color: var(--neutral-white);
+}
+/* common css style stert hear */
+
+/* nav bar css stert hear */
+nav
+{
+    padding: 0px;
+    margin: 0px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.navbar ul li
+{
+    padding: 12px 25px;
+}
+.navbar ul li a
+{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #18191f;
+}
+.navbar .autButton .botton_light
+{
+    margin-right: 14px;
+}
+/* nav bar css stert end */
+/* Banner section part start hear */
+#banner
+{
+    padding: 96px 0;
+}
+#banner h2
+{               
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 119%;
+    color: var(--neutral-d-grey);
+}
+#banner h2 samp
+{
+    color: var(--brand-primary);
+}
+#banner p
+{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--neutral-grey);
+    margin: 8px 0 32px;
+}
+#banner .botton_primary
+{
+    padding: 16px 32px;
+}
+/* Banner section part end hear */
+
+/* Clients Logo section stert hear */
+#client_logo
+{
+    filter: grayscale(100%);
+    transition: 0.25s;
+    margin: 40px 0px;
+}
+#client_logo h2
+{
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 122%;
+    color: var(--neutral-d-grey);
+}
+#client_logo p
+{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--neutral-grey);
+}
+
+  #client_logo img:hover{
+    transform: scale(1.2);
+    filter: grayscale(0);
+  }
+  
+/* Clients Logo section end hear */
+/* Icon box section stert hear */
+
+#icon_box_section h2
+{
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 122%;
+    color: var(--neutral-d-grey);
+}
+#icon_box_section p
+{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--neutral-grey);
+}
+
+#icon_box_section h3
+{
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 129%;
+    color: var(--neutral-d-grey);
+    padding: 0 80px;
+}
+#icon_box_section .icon_box p
+{
+    padding: 0 40px;
+}
+/* Icon box section end hear */
+/*Pixelgrade section stert hear */
+#pixelgrade h2,
+#footer_like h2
+{
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 122%;
+    color: var(--neutral-d-grey);
+}
+#pixelgrade p,
+#footer_like p
+{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    color: var(--neutral-grey);
+}
+/*Pixelgrade section end hear */
+/* business review section stert hear */
+#business_review h2
+{
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 122%;
+    color: var(--neutral-d-grey);
+}
+#business_review h2 span
+{
+    color: var(--brand-primary);
+}
+#business_review p
+{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #18191f;
+}
+#business_review img
+{
+    width: 48px;
+    height: 48px;
+    margin-left: 8px;
+}
+#business_review h4
+{
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 129%;
+    color: var(--neutral-d-grey);
+}
+#business_review p
+{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--neutral-grey);
+}
+/* business review section end hear */
+/* customers contant section stert hear */
+#customers_contant p
+{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--neutral-grey);
+}
+#customers_contant h4
+{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 140%;
+    color: var(--brand-primary);
+}
+#customers_contant h6
+{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--neutral-l-grey);
+}
+#customers_contant .row .row img
+{
+    width: 48px;
+    height: 48px;
+}
+#customers_contant a
+{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 140%;
+    color: var(--brand-primary);
+}
+/* customers contant section end hear */
+/* marketing Section stert hear */
+#marketing h2
+{
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 122%;
+    color: var(--neutral-d-grey);
+}
+#marketing p
+{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--neutral-grey);
+    padding: 0 30px;
+}
+#marketing .img_card
+{
+    margin-left: 12px;
+    margin-right: 12px;
+}
+#marketing .img_card .text_body
+{
+    border-radius: 8px;
+    width: 80%;
+    box-shadow: 0 8px 16px 0 rgba(171, 190, 209, 0.4);
+    background: var(--neutral-silver);
+}
+#marketing .img_card .text_body p
+{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 140%;
+    color: var(--neutral-grey);
+}
+/* marketing Section end hear */
+
+/* suscipition section stert hear  */
+#suscipition
+{
+    margin: 80px 0px 40px;
+}
+#suscipition h2
+{
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 119%;
+    color: var(--neutral-black);
+}
+/* suscipition section end hear  */
+
+/* footer section stert hear */
+footer
+{
+    background: var(--neutral-black);
+}
+footer p
+{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    color: var(--neutral-silver);
+}
+footer ul,
+footer li,
+footer a
+{
+    padding: 0px;
+    margin: 0px;
+}
+footer .icon li 
+{
+    display: inline;
+    margin-right: 14px;
+}
+footer h3
+{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 140%;
+    color: var(--neutral-white);
+}
+footer .footer_manu_bar_01 li a
+{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: var(--neutral-silver);
+}
+footer form input
+{
+    border-radius: 8px 0px 0px 8px;
+    width: 255px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    padding: 8px;
+    outline: none;
+    background-color: #56585D;
+    /* opacity: 0.2; */
+    color: #d9dbe1;
+    border: 0px;
+}
+footer form button
+{
+    border-radius: 0px 8px 8px 0px;
+    padding: 8px;
+    outline: none;
+    background-color: #56585D;
+    color: #d9dbe1;
+    border: 0px;
+    margin-left: -4px;
+    position: absolute;
+    align-items: center;
+}
+footer form input::placeholder
+{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    color: #d9dbe1;
+}
+/* footer section end hear */

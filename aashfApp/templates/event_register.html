@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bradcam_area overlay d-flex align-items-center justify-content-center" style="background-image: url('{{banner.event_image.url}}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Make Registration for <i>{{query}}</i> Event</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end  -->
+
+<!-- ================ contact section start ================= -->
+<section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="messages">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p {% if message.tags %} class="alert alert-{{message.tags}} mb-3" {% endif %}>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- event_register.html -->
+                 <div class="row mx-3">
+        <div class="col-lg-8">
+            <!-- Messages section for displaying Django messages -->
+
+            <!-- Rest of your form and other content -->
+                <form class="form-contact contact_form" method="post" enctype="multipart/form-data" action="{% url 'event_register' query.id %}?country={{country}}" novalidate="novalidate">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12">
+                            {% for fm in form %}
+                            <div class="form-group">
+                                {{ fm.label }}
+                                <p>{{ fm }}</p>
+                                {% if fm.errors %}
+                                    <div class="text-danger">
+                                        {{ fm.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="button button-contactForm boxed-btn">Register</button>
+                    </div>
+                </form>
+        </div>
+
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="media contact-info">
+                        <div id="eventImageCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators (optional, can be removed if not needed) -->
+                            <!-- <ol class="carousel-indicators"> -->
+                                {% for i in query.event_image.all %}
+                                    <li data-target="#eventImageCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+                                {% endfor %}
+                            <!-- </ol> -->
+                        
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                {% for img in query.event_image.all %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <img class="d-block w-100 img-fluid lazyload" data-src="{{ img.event_image.url }}" alt="" loading="lazy">
+                                </div>
+                                {% endfor %}
+                            </div>
+                        
+                            <!-- Controls -->
+                            <a class="carousel-control-prev" href="#eventImageCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#eventImageCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <!-- <span class="contact-info__icon"><i class="ti-tablet"></i></span> -->
+                        <div class="media-body">
+                            <h3><a href="{% url 'event_detail' query.id %}?country={{country}}">{{query.e_name}}</a></h3>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <!-- <span class="contact-info__icon"><i class="ti-email"></i></span> -->
+                        <div class="media-body">
+                            <p style="text-align: justify;">{{query.e_details | truncatewords:20 | safe }}</p>
+                        <a class="read_more" href="{% url 'event_detail' query.id %}?country={{country}}">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

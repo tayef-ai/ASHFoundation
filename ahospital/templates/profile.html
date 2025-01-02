@@ -1,0 +1,55 @@
+{% extends 'hbase.html' %}
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        {% if messages %}
+        <div class="col-12">
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}} mb-3 text-center">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="col-sm-6 shadow py-4">
+            <h2 class="text-center mb-4">Profile</h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ request.user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ request.user.see_user.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>{{ request.user.see_user.dob|date:"d/m/Y" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>{{ request.user.see_user.gender }}</td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td>{{ request.user.see_user.role }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ request.user.see_user.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile</th>
+                        <td>{{ request.user.see_user.phone }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center mt-4">
+                <a href="{% url 'editprofile' %}" class="btn btn-info">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

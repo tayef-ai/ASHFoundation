@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bradcam_area overlay d-flex align-items-center justify-content-center" style="background-image: url({{query.0.image.url}});">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Our Mission</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="whole-wrap">
+    <div class="container box_1170">
+        <div class="section-top-border">
+            <h3 class="mb-30">{{query.0.title}}</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <img data-src="{{query.0.image.url}}" alt="" class="img-fluid lazyload">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <p style="text-align: justify;">{{query.0.details | safe}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-top-border text-right">
+            <h3 class="mb-30">{{query.1.title}}</h3>
+            <div class="row">
+                <div class="col-md-9">
+                    <p style="text-align: justify;">{{query.1.details | safe}}</p>
+                </div>
+                <div class="col-md-3">
+                    <img data-src="{{query.1.image.url}}" alt="" class="img-fluid lazyload">
+                </div>
+            </div>
+        </div>
+        <div class="section-top-border">
+            <h3 class="mb-30">{{query.2.title}}</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <img data-src="{{query.2.image.url}}" alt="" class="img-fluid lazyload" loading="lazy">
+                </div>
+                <div class="col-md-9 mt-sm-20">
+                    <p style="text-align: justify;">{{query.2.details | safe}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

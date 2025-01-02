@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bradcam_area overlay d-flex align-items-center justify-content-center" style="background-image: url('{{query.image.url}}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3 class="pt-5">{{query}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end  -->
+
+<!-- popular_causes_area_start  -->
+<div class="popular_causes_area pt-120 cause_details ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="single_cause">
+                    <div class="feature-img text-center">
+                        <img data-src="{{query.image.url}}" class="lazyload img-fluid" alt="" loading="lazy">
+                    </div>
+                    <div class="causes_content">
+                        <h4>{{query.l_title}}</h4>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

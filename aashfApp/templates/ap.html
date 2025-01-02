@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bradcam_area overlay d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Shariah Advisory Board in {{country}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end  -->
+
+<!-- popular_causes_area_start  -->
+<div class="popular_causes_area pt-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for q in query %}
+            <div class="col-lg-4 col-md-6 my-3">
+                <div class="single_volenteer">
+                    <div class="volenteer_thumb">
+                        <img data-src="{{q.image.url}}" class="lazyload" alt="" loading="lazy">
+                    </div>
+                    <div class="voolenteer_info d-flex align-items-end">
+                        <div class="info_inner">
+                            <h4 class='my-2'>{{q.name}}</h4>
+                            <p style="text-align: justify;">{{q.role}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

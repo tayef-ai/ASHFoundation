@@ -1,0 +1,250 @@
+{% extends "hbase.html" %}
+{% load static %}
+{% block content %}
+<!-- Banner section part start hear -->
+     <section id="banner">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7 order-2 order-lg-1">
+            <h2>দৈনিক বিনামূল্যের <br> <samp>স্বাস্থ্যসেবা প্রোগ্রাম</samp></h2>
+            <p>যেখানে সকলের জন্য মানসম্পন্ন চিকিৎসা নিশ্চিত করার লক্ষ্যে মেডিসিন, ডায়াবেটিস, চর্মরোগ, চক্ষুরোগ, প্রসূতি এবং শিশুরোগের বিশেষ সেবা প্রদান করা হয়</p>
+            <a href="{% url 'register' %}" class="botton_primary">Register</a>
+          </div>
+          <div class="col-lg-5 order-1 order-lg-2 text-end">
+            <img class="img-fluid" src="{% static 'hospital/imgs/hello_animated.gif' %}" alt="img">
+          </div>
+        </div>
+      </div>
+     </section>
+    <!-- Banner section part end hear -->
+    <!-- Clients Logo section stert hear -->
+     {% comment %} <section id="client_logo">
+      <div class="container">
+        <div class="row text-center">
+          <h2>Our Clients</h2>
+          <p>We have been working with some Fortune 500+ clients</p>
+        </div>
+        <div class="row text-center mt-4 mb-4">
+          <div class="col-3 col-lg"><img src="{% static 'hospital/imgs/brandLogo01.png' %}" alt="img"></div>
+          <div class="col-3 col-lg"><img src="{% static 'hospital/imgs/brandLogo02.png' %}" alt="img"></div>
+          <div class="col-3 col-lg"><img src="{% static 'hospital/imgs/brandLogo03.png' %}" alt="img"></div>
+          <div class="col-3 col-lg"><img src="{% static 'hospital/imgs/brandLogo04.png' %}" alt="img"></div>
+          <div class="col mt-3 mt-lg-0 col-lg"><img src="{% static 'hospital/imgs/brandLogo05.png' %}" alt="img"></div>
+          <div class="col mt-3 mt-lg-0 col-lg"><img src="{% static 'hospital/imgs/brandLogo06.png' %}" alt="img"></div>
+          <div class="col mt-3 mt-lg-0 col-lg"><img src="{% static 'hospital/imgs/brandLogo07.png' %}" alt="img"></div>
+        </div>
+      </div>
+     </section> {% endcomment %}
+    <!-- Clients Logo section end hear -->
+    <!-- Icon box section stert hear -->
+    {% comment %} <section id="icon_box_section">
+      <div class="container mt-5 mb-5">
+        <div class="row text-center">
+          <div class="col">
+            <h2>Manage your entire community <br> in a single system</h2>
+            <p>Who is Nextcent suitable for?</p>
+          </div>
+        </div>
+        <div class="row text-center align-items-center mt-4">
+          <div class="col-lg-4">
+            <div class="icon_box mt-3">
+              <img class="mb-3" src="{% static 'hospital/imgs/icon01.png' %}" alt="img">
+              <h3>Membership Organisations</h3>
+              <p>Our membership management software provides full automation of membership renewals and payments</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="icon_box mt-3">
+              <img class="mb-3" src="{% static 'hospital/imgs/icon02.png' %}" alt="img">
+              <h3>National Associations</h3>
+              <p>Our membership management software provides full automation of membership renewals and payments</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="icon_box mt-3">
+              <img class="mb-3" src="{% static 'hospital/imgs/icon03.png' %}" alt="img">
+              <h3>Clubs And Groups</h3>
+              <p>Our membership management software provides full automation of membership renewals and payments</p>
+            </div>
+
+        </div>
+      </div>
+    </section> {% endcomment %}
+    <!-- Icon box section end hear -->
+    <!-- Pixelgrade section stert hear -->
+     {% comment %} <section id="pixelgrade">
+      <div class="container mt-2 mb-2 mt-lg-4 mb-lg-4">
+        <div class="row align-items-center">
+          <div class="col-lg-5 order-2 order-lg-1 text-start">
+            <img class="img-fluid" src="{% static 'hospital/imgs/frame35.png' %}" alt="img">
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2">
+            <h2>The unseen of spending three years at Pixelgrade</h2>
+            <p class="mb-4 mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae est varius fringilla. Pellentesque placerat vestibulum lorem sed porta. Nullam mattis tristique iaculis. Nullam pulvinar sit amet risus pretium auctor. Etiam quis massa pulvinar, aliquam quam vitae, tempus sem. Donec elementum pulvinar odio.</p>
+            <a href="#" class="botton_primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+     </section> {% endcomment %}
+    <!-- Pixelgrade section end hear -->
+    <!-- business review section stert hear -->
+     {% comment %} <section id="business_review">
+      <div class="container mt-1 mb-1 mt-lg-3 mb-lg-3 ">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h2>Helping a local <br><span> business reinvent itself</span></h2>
+            <p>We reached here with our hard work and dedication</p>
+          </div>
+          <div class="col- col-lg-6">
+            <div class="row">
+              <div class="col-6 mt-3 mb-3 mt-lg-2 mb-lg-2">
+                <div class="row align-items-center">
+                  <div class="col-3">
+                    <img src="{% static 'hospital/imgs/countIcon01.png' %}" alt="img">
+                  </div>
+                  <div class="col-9 col-lg-9">
+                    <h4>2,245,341</h4>
+                    <p>Members</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 mt-3 mb-3 mt-lg-2 mb-lg-2">
+                <div class="row align-items-center">
+                  <div class="col-3">
+                    <img src="{% static 'hospital/imgs/countIcon01.png' %}" alt="img">
+                  </div>
+                  <div class="col-9 col-lg-9">
+                    <h4>2,245,341</h4>
+                    <p>Members</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 mt-3 mb-3 mt-lg-2 mb-lg-2">
+                <div class="row align-items-center">
+                  <div class="col-3">
+                    <img src="{% static 'hospital/imgs/countIcon01.png' %}" alt="img">
+                  </div>
+                  <div class="col-9">
+                    <h4>2,245,341</h4>
+                    <p>Members</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 mt-3 mb-3 mt-lg-2 mb-lg-2">
+                <div class="row align-items-center">
+                  <div class="col-3">
+                    <img src="{% static 'hospital/imgs/countIcon01.png' %}" alt="img">
+                  </div>
+                  <div class="col-9">
+                    <h4>2,245,341</h4>
+                    <p>Members</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </section> {% endcomment %}
+    <!-- business review section end hear -->
+    <!-- footer like section stert hear -->
+     {% comment %} <section id="footer_like">
+      <div class="container mt-2 mb-2 mt-lg-4 mb-lg-4">
+        <div class="row align-items-center">
+          <div class="col-lg-5 order-2 order-lg-1 text-start">
+            <img class="img-fluid" src="{% static 'hospital/imgs/frame36.png' %}" alt="img">
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2">
+            <h2>How to design your site footer like we did</h2>
+            <p class="mb-4 mt-3">Donec a eros justo. Fusce egestas tristique ultrices. Nam tempor, augue nec tincidunt molestie, massa nunc varius arcu, at scelerisque elit erat a magna. Donec quis erat at libero ultrices mollis. In hac habitasse platea dictumst. Vivamus vehicula leo dui, at porta nisi facilisis finibus. In euismod augue vitae nisi ultricies, non aliquet urna tincidunt. Integer in nisi eget nulla commodo faucibus efficitur quis massa. Praesent felis est, finibus et nisi ac, hendrerit venenatis libero. Donec consectetur faucibus ipsum id gravida.</p>
+            <a href="#" class="botton_primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+     </section> {% endcomment %}
+    <!-- footer like section end hear -->
+    <!-- customers contant section stert hear -->
+     {% comment %} <section id="customers_contant">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-4 order-2 order-lg-1 text-center">
+            <img class="img-fluid mt-3 mt-lg-0" src="{% static 'hospital/imgs/image_9.png' %}" alt="img">
+          </div>
+          <div class="col-12 col-lg-8 order-1 order-lg-2">
+            <p>Maecenas dignissim justo eget nulla rutrum molestie. Maecenas lobortis sem dui, vel rutrum risus tincidunt ullamcorper. Proin eu enim metus. Vivamus sed libero ornare, tristique quam in, gravida enim. Nullam ut molestie arcu, at hendrerit elit. Morbi laoreet elit at ligula molestie, nec molestie mi blandit. Suspendisse cursus tellus sed augue ultrices, quis tristique nulla sodales. Suspendisse eget lorem eu turpis vestibulum pretium. Suspendisse potenti. Quisque malesuada enim sapien, vitae placerat ante feugiat eget. Quisque vulputate odio neque, eget efficitur libero condimentum id. Curabitur id nibh id sem dignissim finibus ac sit amet magna.</p>
+            <h4 class="mt-2 mb-2">Tim Smith</h4>
+            <h6 class="mb-3">British Dragon Boat Racing Association</h6>
+            <div class="row text-center align-items-center">
+              <div class="col-4 col-lg">
+                <img src="{% static 'hospital/imgs/brandLogo01.png' %}" alt="img">
+              </div>
+              <div class="col-4 col-lg">
+                <img src="{% static 'hospital/imgs/brandLogo02.png' %}" alt="img">
+              </div>
+              <div class="col-4 col-lg">
+                <img src="{% static 'hospital/imgs/brandLogo03.png' %}" alt="img">
+              </div>
+              <div class="col-4 col-lg">
+                <img src="{% static 'hospital/imgs/brandLogo04.png' %}" alt="img">
+              </div>
+              <div class="col-4 col-lg">
+                <img src="{% static 'hospital/imgs/brandLogo05.png' %}" alt="img">
+              </div>
+              <div class="col-4 col-lg">
+                <img src="{% static 'hospital/imgs/brandLogo06.png' %}" alt="img">
+              </div>
+              <div class="col-12 mt-1 mt-lg-0 col-lg-4">
+                <a href="#">Meet all customers <i class="fa fa-long-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </section> {% endcomment %}
+    <!-- customers contant section end hear -->
+    <!-- marketing Section stert hear -->
+    <section id="marketing">
+      <div class="container mb-5">
+        <div class="row mt-5 mb-5">
+          <div class="col-lg-2"></div>
+          <div class="col-12 col-lg-8 text-center">
+            <h2>Our Activities</h2>
+          </div>
+          <div class="col-lg-2"></div>
+        </div>
+        <div class="row mb-5">
+          {% for q in query  %}
+          <div class="col-12 col-lg-4">
+            <div class="img_card text-center position-relative">
+              <img class="img-fluid" src="{{q.image.url}}" alt="img">
+              <div class="text_body pt-2 pb-2 position-absolute top-100 start-50 translate-middle">
+                <p class="mb-2">{{q.a_name}}</p>
+                <a href="#">Readmore <i class="fa fa-long-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row text-center pt-5">
+          <div class="col-12">
+            <a href="{% url 'hactivities' %}" class="botton_primary">Show More <i class="fa fa-long-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+     </section>
+  
+    <!-- marketing Section end hear -->
+    <!-- suscipition section stert hear -->
+    <!-- <section id="suscipition">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-12">
+            <h2 class="mb-4">Pellentesque suscipit <br> fringilla libero eu.</h2>
+            <a href="#" class="botton_primary">Get a Demo <i class="fa fa-long-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+     </section> -->
+    <!-- suscipition section end hear -->
+    {% endblock content %}
+    <!-- footer section stert hear -->

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map with scrollWheelZoom disabled
+        var map = L.map('map', { scrollWheelZoom: false }).setView([20, 0], 2);  // Center of the map
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Parse the locations JSON string into a JavaScript object
+        var locations = JSON.parse('{{ locations_json|safe }}');
+        
+        // Add markers for each location
+        locations.forEach(function(location) {
+            var marker = L.marker([location.latitude, location.longitude]).addTo(map);
+
+            // Bind a popup with the country name
+            marker.bindPopup(location.name);
+
+            // Add hover tooltip for the country name
+            marker.bindTooltip(location.name, {permanent: false, direction: 'top'});
+
+            // Open the corresponding URL in a new tab when the marker is clicked
+            marker.on('click', function() {
+                window.open(location.url, '_blank');
+            });
+        });
+    </script>
+</div>
+
+{% endblock content %}

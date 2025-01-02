@@ -1,0 +1,29 @@
+{% extends "hbase.html" %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Heading Section -->
+        <div class="col-12 text-center mb-4">
+            <h2 class="fw-bold text-primary">About Us</h2>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <!-- Image Section -->
+        <div class="col-md-6">
+            <img src="{% static 'hospital/imgs/about.jpg' %}" class="img-fluid rounded shadow" alt="About Us">
+        </div>
+        <!-- Text Section -->
+        <div class="col-md-6">
+            <p class="mt-3 mt-md-0 text-justify">
+                <strong>ঘরে বসে ডেডিকেটেড ডাক্তার থেকে বিনামূল্যে টেলিমেডিসিন সেবা পেতে হ্যালো হসপিটাল গ্রুপে আপনাকে স্বাগতম জানাই।</strong>
+                <br><br>
+                সকাল ৮টা থেকে দুপুর ৩টা পর্যন্ত <span class="fw-bold text-primary">01841040542</span> নাম্বারে এবং দুপুর ৩টা থেকে রাত 
+                ১১টা পর্যন্ত <span class="fw-bold text-primary">01841040543</span> নাম্বারে কল করলেই অভিজ্ঞতা সম্পন্ন অথোরাইজড ডাক্তার থেকে কাংখিত সেবা মিলবে।
+                <br><br>
+                প্রয়োজনে একই নাম্বারে হোয়াটস এপ বা ইমোতে করা যাবে ভিডিও কল। একই সাথে হোয়াটস এপ বা ইমোতে পাঠানো যাবে পূর্ববর্তী বা পরবর্তী পরীক্ষার রিপোর্ট।
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

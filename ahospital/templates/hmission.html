@@ -1,0 +1,26 @@
+{% extends "hbase.html" %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Heading Section -->
+        <div class="col-12 text-center mb-4">
+            <h2 class="fw-bold text-primary">Our Mission and Vision</h2>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <!-- Image Section -->
+        <div class="col-md-6">
+            <img src="{% static 'hospital/imgs/mission.jpg' %}" class="img-fluid rounded shadow" alt="About Us">
+        </div>
+        <!-- Text Section -->
+        <div class="col-md-6">
+            <p class="mt-3 mt-md-0 text-justify">
+                <strong>বিনামূল্যের হসপিটাল।</strong>
+                <br><br>
+মানবতার সেবায় আলহাজ্ব শামসুল হক ফাউন্ডেশন পরিচালিত হ্যালো হসপিটাল। ডেডিকেটেড ডাক্তার থেকে টেলিমেডিসিন সেবা নেয়ার পাশাপাশি এখন থেকে রোগীগণ সরাসরি ডাক্তার দেখাতে পারবেন। প্রতদিন চলবে ৩টা থেকে রাত ৯টা পর্যন্ত। সিরিয়ালের জন্য কল করুন 01841040540
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

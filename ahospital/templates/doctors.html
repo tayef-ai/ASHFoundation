@@ -1,0 +1,36 @@
+{% extends "hbase.html" %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <!-- Heading Section -->
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h2 class="fw-bold text-primary">Our Dedicated Doctors</h2>
+            <p class="text-muted">Meet our experienced and dedicated team of healthcare professionals.</p>
+        </div>
+    </div>
+    <!-- Doctors Section -->
+    <div class="row">
+        <!-- Example Doctor Card -->
+        {% for doctor in doctors %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img 
+                    src="{{ doctor.image_url }}" 
+                    class="card-img-top img-fluid rounded-top" 
+                    alt="Dr. {{ doctor.name }}" 
+                    style="height: 250px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold text-primary">{{ doctor.name }}</h5>
+                    <p class="text-muted mb-1">{{ doctor.specialty }}</p>
+                    <p class="card-text small text-muted">{{ doctor.bio }}</p>
+                </div>
+                {% comment %} <div class="card-footer text-center bg-light">
+                    <a href="{{ doctor.profile_url }}" class="btn btn-outline-primary btn-sm">View Profile</a>
+                </div> {% endcomment %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
