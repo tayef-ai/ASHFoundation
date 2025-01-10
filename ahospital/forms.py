@@ -13,26 +13,28 @@ class CustomerRegistrationForm(UserCreationForm):
         choices=[('Patient', 'রোগী'), ('Doctor', 'ডাক্তার')],
         widget=forms.Select(attrs={'class': 'form-control'}),
         required=True,
-        label="Role"
+        label="আপনি কী হিসেবে নিবন্ধিত হচ্ছেন"
     )
     gender = forms.ChoiceField(
-        choices=[('', 'Select Gender')] + [('Male', 'Male'), ('Female', 'Female')],
+        choices=[('', 'লিঙ্গ নির্বাচন করুন')] + [('Male', 'পুরুষ'), ('Female', 'মহিলা')],
         widget=forms.Select(attrs={'class': 'form-control'}),
         required=True,
-        label="Gender"
+        label="লিঙ্গ"
     )
-    name = forms.CharField(label='Enter Your Name', widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
+    name = forms.CharField(label='আপনার নাম লিখুন', widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
     dob = forms.DateField(
-        label='Enter Your Date of Birth', 
-        widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})
+        required=False,
+        label='আপনার জন্মতারিখ দিন', 
+        widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
     )
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(label='পাসওয়ার্ড দিন', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label='পুনরায় পাসওয়ার্ড লিখুন', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    age = forms.IntegerField(required=False, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     
     class Meta:
         model = get_user_model()
-        fields = ['name', 'dob', 'gender', 'email', 'role', 'password1', 'password2']  # Role added after email
+        fields = ['name', 'dob', 'age', 'gender', 'email', 'role', 'password1', 'password2']  # Role added after email
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
         }
@@ -50,7 +52,7 @@ class CustomerRegistrationForm(UserCreationForm):
         user = super().save(commit=False)
         if commit:
             user.save()
-            Customer.objects.create(user=user, role=self.cleaned_data['role'], name=self.cleaned_data['name'], dob=self.cleaned_data['dob'])
+            Customer.objects.create(user=user, role=self.cleaned_data['role'], name=self.cleaned_data['name'], dob=self.cleaned_data['dob'], age=self.cleaned_data['age'])
         return user
 
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import EventRegistrationForm, ContactForm, NikahRegistrationForm
 from django.contrib import messages
@@ -124,11 +124,37 @@ def event_detail(request, id):
     # print("==================", banner_image) 
     return render(request, 'event_details.html', {'query': query, 'banner': banner_image, 'country': region})
 
-def event_register(request, id):
+def vol_event_register(request, id):
     region = request.GET.get('country', 'Bangladesh')
     query = Event.objects.get(pk=id)
     banner_image = query.event_image.filter(is_banner=True).first()
     
+    if request.method == 'GET':
+        form = EventRegistrationForm()
+        return render(request, 'vol_event_register.html', {'query': query, 'form': form, 'banner': banner_image, 'country': region})
+    
+    if request.method == 'POST':
+        form = EventRegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.event = query
+            form.save()
+            messages.success(request, "আপনার আবেদনটি সফলভাবে গৃহীত হয়েছে!!!")
+            return redirect('vol_event_register', id=id)
+        else:
+            error_message = "ফর্ম জমা দেওয়ার সময় একটি ত্রুটি ছিল৷ বিস্তারিত চেক করুন এবং আবার চেষ্টা করুন।"
+            messages.warning(request, error_message)
+    return render(request, 'vol_event_register.html', {'query': query, 'form': form, 'banner': banner_image, 'country': region})
+
+def event_register(request, id):
+    region = request.GET.get('country', 'Bangladesh')
+    query = Event.objects.get(pk=id)
+    banner_image = query.event_image.filter(is_banner=True).first()
+    event = get_object_or_404(Event, id=id)
+    today = timezone.now().date()
+    if today > event.close_date:
+        return render(request, 'event_unavailable.html', {'country': region})
+        
     if request.method == 'GET':
         form = NikahRegistrationForm()
         return render(request, 'event_register.html', {'query': query, 'form': form, 'banner': banner_image, 'country': region})
@@ -139,12 +165,12 @@ def event_register(request, id):
             form = form.save(commit=False)
             form.event = query
             form.save()
-            messages.success(request, "Your form has been submitted successfully!")
+            messages.success(request, "আপনার আবেদনটি সফলভাবে গৃহীত হয়েছে!!! নির্বাচিত হলে খুব শিঘ্রই আপনাকে জানানো হবে।")
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                 return JsonResponse({'status': 'success', 'message': "Your form has been submitted successfully!"})
             return redirect('event_register', id=id)
         else:
-            error_message = "There was an error submitting the form. Please check the details and try again."
+            error_message = "ফর্ম জমা দেওয়ার সময় একটি ত্রুটি ছিল৷ বিস্তারিত চেক করুন এবং আবার চেষ্টা করুন।"
             messages.warning(request, error_message)
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                 return JsonResponse({'status': 'error', 'message': error_message})

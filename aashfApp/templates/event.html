@@ -48,7 +48,11 @@
                         <p style="text-align: justify;">{{e.e_details | truncatewords:20 | safe }}</p>
                         <a class="read_more" href="{% url 'event_detail' e.id %}?country={{country}}">Read More</a>
                         {% if e.status != 'Closed' %}
-                            <a class="btn btn-sm btn-primary ml-5" href="{% url 'event_register' e.id %}?country={{country}}">Register</a>
+                            {% if e.e_name == 'Volunteer Registration' %}
+                                <a class="btn btn-sm btn-primary ml-5" href="{% url 'vol_event_register' e.id %}?country={{country}}">Register</a>
+                            {% else %}
+                                <a class="btn btn-sm btn-primary ml-5" href="{% url 'event_register' e.id %}?country={{country}}">Register</a>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

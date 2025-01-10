@@ -302,15 +302,16 @@ class Awards(models.Model):
     def __str__(self):
         return self.name
     
-class Registration(models.Model):
+class myVol_Registration(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='reg_event')
-    name = models.CharField(max_length=255)
-    father_name = models.CharField(max_length=255)
-    address = models.TextField()
-    image = models.ImageField(upload_to='event_reg', default='event_reg/default.jpg')
+    Full_Name = models.CharField(max_length=255)
     email = models.EmailField()
-    nid = models.CharField(blank=True, null=True, max_length=255)
     mobile = models.CharField(max_length=255)
+    nid = models.ImageField(upload_to='vol_nid', verbose_name='Upload NID')
+    Present_Address = models.TextField()
+    Permanent_Address = models.TextField()
+    image = models.ImageField(upload_to='vol_reg', verbose_name='Upload Your Picture')
+    facebook = models.URLField(max_length=500, blank=True, null=True, verbose_name='Facebook Profile Link')
 
     def save(self, *args, **kwargs):
         img = PilImage.open(self.image)
@@ -322,8 +323,17 @@ class Registration(models.Model):
         self.image.save(self.image.name, File(buffer), save=False)
         super().save(*args, **kwargs)
 
+        img = PilImage.open(self.nid)
+        output_size = (300, 225)
+        img = img.resize(output_size)
+        buffer = BytesIO()
+        img_format = 'JPEG' if self.nid.name.lower().endswith('.jpg') or self.nid.name.lower().endswith('.jpeg') else 'PNG'
+        img.save(buffer, format=img_format, quality=70)
+        self.nid.save(self.nid.name, File(buffer), save=False)
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return self.name
+        return self.Full_Name
     
 class Image(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_image')

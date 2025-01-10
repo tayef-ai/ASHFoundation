@@ -1,5 +1,5 @@
 from django import forms
-from .models import Registration, Contact
+from .models import myVol_Registration, Contact
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV2Checkbox
 from ahospital.models import NikahRegistration
@@ -8,22 +8,29 @@ from ahospital.models import NikahRegistration
 class EventRegistrationForm(forms.ModelForm):
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
     class Meta:
-        model = Registration
-        fields = ['name', 'address', 'email', 'mobile', 'image', 'captcha']
+        model = myVol_Registration
+        fields = ['Full_Name', 'email', 'mobile', 'nid', 'Present_Address', 'Permanent_Address', 'image', 'facebook', 'captcha']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Name'}),
-            # 'father_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Father's Name"}),
+            'Full_Name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class':'form-control'}),
             'address': forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Enter Address'}),
             'email': forms.EmailInput(attrs={'class':'form-control', 'placeholder': 'Email'}),
-            'mobile': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'01...'}),
-            'image': forms.ClearableFileInput(attrs={'class': 'form-control-file'})
+            'mobile': forms.TextInput(attrs={'class': 'form-control'}),
+            'nid': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+            'Present_Address': forms.Textarea(attrs={'class':'form-control', 'rows': 4}),
+            'Permanent_Address': forms.Textarea(attrs={'class':'form-control', 'rows': 4}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+            'facebook': forms.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your Facebook profile link'
+            }),
         }
 
 class NikahRegistrationForm(forms.ModelForm):
-    # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
     class Meta:
         model = NikahRegistration
-        fields = ['email', 'groom_name', 'groom_present_address', 'groom_permanent_address', 'groom_occupation', 'groom_education', 'groom_nid', 'groom_mobile', 'groom_alternate_mobile', 'groom_father', 'groom_father_mobile', 'bride_name', 'bride_present_address', 'bride_permanent_address', 'bride_occupation', 'bride_education', 'bride_nid', 'bride_mobile', 'bride_alternate_mobile', 'bride_father', 'bride_father_mobile', 'applicant_name', 'applicant_mobile', 'applicant_groom', 'applicant_bride', 'groom_image', 'bride_image']
+        fields = ['email', 'groom_name', 'groom_present_address', 'groom_permanent_address', 'groom_occupation', 'groom_education', 'groom_nid', 'groom_mobile', 'groom_alternate_mobile', 'groom_father', 'groom_father_mobile', 'bride_name', 'bride_present_address', 'bride_permanent_address', 'bride_occupation', 'bride_education', 'bride_nid', 'bride_mobile', 'bride_alternate_mobile', 'bride_father', 'bride_father_mobile', 'applicant_name', 'applicant_mobile', 'applicant_groom', 'applicant_bride', 'groom_image', 'bride_image', 'captcha']
         widgets = {
             'email': forms.EmailInput(attrs={'class':'form-control'}),
             'groom_name': forms.TextInput(attrs={'class': 'form-control'}),

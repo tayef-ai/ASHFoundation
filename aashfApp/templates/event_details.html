@@ -40,9 +40,15 @@
                         <p  style="text-align: justify;">{{query.e_details | safe}}</p>
                         
                     </div>
-                    <div class="d-flex justify-content-center align-items-center">
-                    <a href="{% url 'event_register' query.id %}" class="btn btn-primary">Register To This Event</a>
-                    </div>
+                    {% if query.e_name == 'Volunteer Registration' %}
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="{% url 'vol_event_register' query.id %}" class="btn btn-primary">Register To This Event</a>
+                        </div>
+                    {% else %}
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="{% url 'event_register' query.id %}" class="btn btn-primary">Register To This Event</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

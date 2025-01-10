@@ -11,6 +11,7 @@ urlpatterns = [
     path('legals/', legalview, name='legal'),
     path('blogs/', blogview, name='blog'),
     path('events/register/<int:id>/', event_register, name='event_register'),
+    path('events/volRegister/<int:id>/', vol_event_register, name='vol_event_register'),
     path('events/details/<int:id>/', event_detail, name='event_detail'),
     path('projects/details/<int:id>/', project_detail, name='project_detail'),
     path('activities/details/<int:id>/', activity_detail, name='activity_detail'),
